@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+	<a asp-controller="Home" asp-action="CreateEmployee" class="btn btn-primary">
+		Add Employee
+		
+	</a>
+
+	@* <!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModalCenter">
+		Add Employee
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalCenterTitle">Employee Details</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					
+					<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="AddEmployee">
+						<div class="form-group">
+							<label asp-for="Name" >Name</label>
+							<input type="text" asp-for="Name" class="form-control"  placeholder="Enter name">
+							<span asp-validation-for="Name"></span>
+						</div>
+
+
+						<div class="form-group">
+							<label asp-for="Email">Email address</label>
+							<input type="email" asp-for="Email" class="form-control"  placeholder="Enter email">
+							<span asp-validation-for="Email"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Phone">Phone</label>
+							<input type="number" asp-for="Phone" class="form-control" placeholder="Enter phone number">
+							<span asp-validation-for="Phone"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Address">Address</label>
+							<input type="text" asp-for="Address" class="form-control"  placeholder="Enter Address">
+							<span asp-validation-for="Address"></span>
+						</div>
+						
+						
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+
+
+				</div>
+				
+			</div>
+		</div>
+	</div> *@
+
+
+
+
+
+
+
+
+
+
+
+	<div class="container">
+		<div class="card-header my-3">Employees List</div>
+		<table class="table table-light">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone</th>
+					<th scope="col">Address</th>
+					<th scope="col">Created At</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+					
+				</tr>
+			</thead>
+			<tbody>
+
+				@foreach (var item in Model)
+				{
+				<tr>
+
+
+					<td>@item.Name</td>
+					<td>@item.Email</td>
+					<td>@item.Phone</td>
+					<td>@item.Address</td>
+					<td>@item.CreatedAt</td>
+						<td><a class="btn btn-sm btn-primary" asp-controller="Home" asp-action="UpdateForm" asp-route-Id="@item.Id">Update</a></td>
+					<td><a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="DeleteEmployee" asp-route-Id="@item.Id">Delete</a></td>
+					
+				</tr>
+				}
+
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
